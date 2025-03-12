@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 
-import { Provider } from "@/components/ui/provider"
+import { League_Spartan } from "next/font/google";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const leagueSpartan = League_Spartan({
+  subsets: ["latin"],
+  weight: ["100", "200", "300","400", "500", "600", "700", "800", "900"],
+  variable: "--font-principal",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,12 +20,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Provider>{children}</Provider>
+    <html lang="en" className={leagueSpartan.className}>
+      <body>
+        {children}
       </body>
     </html>
   );
 }
+
+
