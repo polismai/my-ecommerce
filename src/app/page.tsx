@@ -1,8 +1,7 @@
+//components
 import TopBar from "../components/topbar/TopBar";
 import Header from "../components/header/Header";
-
-import { slugify } from "../utils/slugify";
-import Image from "next/image";
+import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
 
 type Product = {
   id: number;
@@ -30,29 +29,14 @@ export default async function Home() {
         <TopBar />
         <Header />
 
-        <div className="grid grid-cols-[540px_255px_255px] md:grid-cols-3 grid-rows-[200px_260px] gap-4">
-          {categories.map((cat, key) => {
-            const slug = slugify(cat);
-            const imageUrl = `/pic-categories-${slug}.jpg`;
-
-            return (
-              <div
-                key={key}
-                className={`w-full h-full bg-blue-500 flex items-center justify-center relative 
-                  ${key === 0 ? "row-span-2" : ""}
-                  ${key === categories.length - 1 ? "col-span-2" : ""}`}
-              >
-                <Image src={imageUrl} fill={true} alt={cat}/>
-              </div>
-            );
-          })}
-        </div>
-        
+        <HomeHeroCategories categories={categories} />
+      
         <ol>
         {products.map(product => {
           return <li key={product.id}>{product.title}</li>
         })}
         </ol>
+       
       </main>
     </div>
   );
