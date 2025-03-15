@@ -3,6 +3,7 @@ import TopBar from "../components/topbar/TopBar";
 import Header from "../components/header/Header";
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
 import AdvantageItem from "@/components/advantageItem/AdvantageItem";
+import AdvantageSection from "@/components/advantageSection/AdvantageSection";
 
 type Product = {
   id: number;
@@ -40,9 +41,7 @@ export default async function Home() {
         </section>
           
         <section className="w-full max-w-[1110px] mx-auto flex justify-between my-8">
-          <AdvantageItem title="Free Shipping" content="On all UA order or order above $100" icon="/icon-truck.svg" />
-          <AdvantageItem title="30 days return" content="Simply return it within 30 days for an exchange" icon="/icon-return.svg" />
-          <AdvantageItem title="Support 24/7" content="Contact us 24 hours a day, 7 days a week" icon="/icon-support.svg" />
+          <AdvantageSection />
         </section>
 
         <section className="w-full max-w-[1110px] mx-auto">
