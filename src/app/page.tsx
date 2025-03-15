@@ -24,19 +24,33 @@ export default async function Home() {
   const categories: string[] = await resCategories.json();
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="min-h-screen flex flex-col p-4 sm:p-8">
+      <header className="w-full">
         <TopBar />
-        <Header />
+      </header>
 
-        <HomeHeroCategories categories={categories} />
-      
-        <ol>
-        {products.map(product => {
-          return <li key={product.id}>{product.title}</li>
-        })}
-        </ol>
-       
+      <section className="w-full max-w-8xl text-center sm:text-left mb-8">
+        <Header />
+      </section>
+
+      <main className="flex flex-col items-center sm:items-start gap-12 flex-grow">
+        <section className="w-full max-w-[1110px] mx-auto">
+          <HomeHeroCategories categories={categories} />
+        </section>
+
+        <section className="w-full max-w-[1110px] mx-auto">
+          <h2 className="text-2xl font-semibold mb-4">Productos Destacados</h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((product) => (
+              <li
+                key={product.id}
+                className="border rounded-lg p-4 shadow-md flex flex-col items-center"
+              >
+                <h3 className="text-lg font-medium">{product.title}</h3>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
     </div>
   );
