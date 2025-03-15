@@ -2,8 +2,9 @@
 import TopBar from "../components/topbar/TopBar";
 import Header from "../components/header/Header";
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
-import AdvantageItem from "@/components/advantageItem/AdvantageItem";
 import AdvantageSection from "@/components/advantageSection/AdvantageSection";
+
+import Image from "next/image";
 
 type Product = {
   id: number;
@@ -42,6 +43,21 @@ export default async function Home() {
           
         <section className="w-full max-w-[1110px] mx-auto flex justify-between my-8">
           <AdvantageSection />
+        </section>
+
+        <section className="my-8 mx-auto w-[255px] border border-solid border-gray-200">
+          <div className="relative aspect-w-1 aspect-h-1 max-w-full">
+            <Image 
+              src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" 
+              alt="" 
+              className="object-contain w-full h-full" 
+              width={255}
+              height={255}
+              layout="intrinsic"
+            />
+          </div>
+          <p>Soy una mochila</p>
+          <p>$ 38.00</p>
         </section>
 
         <section className="w-full max-w-[1110px] mx-auto">

@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    optimizePackageImports:["@chakra-ui/react"],
-  },
+  reactStrictMode: true,
+  images: {
+    domains: ['fakestoreapi.com']
+  }
 };
 
 export default nextConfig;
