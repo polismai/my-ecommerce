@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,49 +11,93 @@ const menuItems = [
   { name: "Beauty", href: "#" },
   { name: "Accessories", href: "#" },
   { name: "Blog", href: "#" },
-  { name: "Contact", href: "#" }
+  { name: "Contact", href: "#" },
 ];
 
 const icons = [
   { src: "/ico-search.svg", alt: "Search" },
   { src: "/ico-globe.svg", alt: "Language" },
   { src: "/ico-user.svg", alt: "User Profile" },
-  { src: "/ico-bag.svg", alt: "Shopping Bag" }
+  { src: "/ico-bag.svg", alt: "Shopping Bag" },
 ];
 
 export const Header = () => {
-  return (
-    <header className="w-full border-b-2 border-gray-400 bg-red-300">
-      <div className="flex items-center justify-between max-w-[1110px] w-full mx-auto">
-        <Link href="/" className="flex-shrink-0">
-          <Image src="/logo.svg" alt="Logo" width={100} height={48} />
-        </Link>
-        <nav className="hidden md:block">
-          <ul className="flex gap-8 list-none">
-            {menuItems.map((item, index) => (
-              <li key={index}>
-                <Link href={item.href} className="hover:text-gray-600 transition-colors">
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+  const [menuOpen, setMenuOpen] = useState(false);
 
-        <div>
-          <ul className="flex gap-6 list-none">
-            {icons.map((icon, index) => (
-              <li key={index}>
-                <Link href="#">
-                  <Image src={icon.src} alt={icon.alt} width={24} height={24} />
-                </Link>
-              </li>
-            ))}
-          </ul>
+    // Función para manejar clics en enlaces y cerrar el menú
+    const handleLinkClick = () => {
+      setMenuOpen(false);
+    };
+
+    return (
+      <header className="w-full border-b-2 border-gray-400 bg-red-300 relative">
+        <div className="flex items-center justify-between max-w-[1110px] w-full mx-auto p-4">
+          <div className="gap-2 mx-4 flex">
+            {/* Botón de menú para móviles */}
+            <button
+              className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Abrir menú"
+              aria-expanded={menuOpen}
+            >
+              <Image src="/ico-menu.svg" alt="Menu" width={32} height={32} />
+            </button>
+  
+            {/* Menú en móviles */}
+            {menuOpen && (
+              <nav
+                className="absolute top-full left-0 right-0 bg-white p-4 shadow-lg flex flex-col items-center gap-4 mt-2 z-50"
+                role="menu"
+              >
+                <ul className="flex flex-col items-center gap-4">
+                  {menuItems.map((item, index) => (
+                    <li key={index}>
+                      <Link
+                        href={item.href}
+                        className="text-gray-800 hover:text-gray-600 transition-colors"
+                        onClick={handleLinkClick} // Cierra el menú al hacer clic en un enlace
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
+            <Link href="/" className="flex-shrink-0">
+              <Image src="/logo.svg" alt="Logo" width={100} height={48} />
+            </Link>
+          </div>
+
+          {/* Menú en desktop */}
+          <nav className="hidden md:block">
+            <ul className="flex gap-8 list-none">
+              {menuItems.map((item, index) => (
+                <li key={index} role="menuitem">
+                  <Link href={item.href} className="hover:text-gray-600 transition-colors">
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+  
+          <div>
+            <ul className="flex gap-6 list-none">
+              {icons.map((icon, index) => (
+                <li key={index}>
+                  <Link href="#">
+                    <Image src={icon.src} alt={icon.alt} width={24} height={24} />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
-    </header>
-  );
-};
+      </header>
+    );
+  };
+  
+  export default Header;
 
-export default Header;
+

@@ -18,8 +18,11 @@ export const TopBar = () => {
   return (
     <div className="flex bg-black w-full p-2 text-white justify-between text-xs">
       <div className="flex gap-6">
-        {contactLinks.map(({ href, icon, text }) => (
-          <Link key={text} href={href} className="flex items-center gap-2">
+        {contactLinks.map(({ href, icon, text }, index) => (
+          <Link 
+            key={text} 
+            href={href} 
+            className={`flex items-center gap-2 ${index === 0 ? "flex" : "hidden sm:flex"}`}>
             <Image src={icon} width={24} height={24} alt={text} />
             <span>{text}</span>
           </Link>
