@@ -41,7 +41,7 @@ export default async function Home() {
           <HomeHeroCategories categories={categories} />
         </section>
           
-        <section className="w-full max-w-[1110px] mx-auto flex justify-between my-8">
+        <section className="w-full max-w-[1110px] mx-auto">
           <AdvantageSection />
         </section>
 
