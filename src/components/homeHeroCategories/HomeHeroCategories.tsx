@@ -13,21 +13,32 @@ type Props = {
 
 export const HomeHeroCategories = ({ categories }: Props) => {
   return (
-    <div className="grid grid-cols-[540px_255px_255px] md:grid-cols-3 grid-rows-[200px_260px] gap-4">
-      {categories.map((cat, key) => {
+    <div 
+      className="
+        grid grid-cols-2 gap-4
+        grid-rows-[130px_154px_130px] 
+        md:grid-cols-[540px_255px_255px]
+        md:grid-rows-[200px_260px]
+      "
+    >
+      {categories.map((cat, index) => {
         const slug = slugify(cat);
         const imageUrl = `/pic-categories-${slug}.jpg`;
 
         return (
           <div
-            key={key}
+            key={index}
             className={`
               relative w-full h-full 
-              ${key === 0 ? "row-span-2" : ""}
-              ${key === categories.length - 1 ? "col-span-2" : ""}
+              ${index === 0 ? "col-span-2 md:col-span-1 md:row-span-2" : ""}
+              ${index === categories.length - 1 ? "col-span-2 md:col-span-2 md:col-start-2": ""}
             `}
           >
-            <Image src={imageUrl} fill={true} alt={cat} />
+            <Image 
+              src={imageUrl} 
+              className="object-cover" 
+              fill={true} 
+              alt={cat} />
             <CenteredLabel>{cat}</CenteredLabel>
           </div>
         );
