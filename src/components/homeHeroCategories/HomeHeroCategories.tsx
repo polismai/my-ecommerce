@@ -15,10 +15,11 @@ export const HomeHeroCategories = ({ categories }: Props) => {
   return (
     <div 
       className="
-        grid grid-cols-2 gap-4
+        grid grid-cols-2 
         grid-rows-[130px_154px_130px] 
-        md:grid-cols-[540px_255px_255px]
+        md:grid-cols-[2fr_1fr_1fr] 
         md:grid-rows-[200px_260px]
+        gap-2 md:gap-4 lg:gap-8
       "
     >
       {categories.map((cat, index) => {
