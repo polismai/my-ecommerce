@@ -44,24 +44,12 @@ export default async function Home() {
           <AdvantageSection />
         </section>
 
-        {/* <section className="w-full max-w-[1110px] mx-auto">
-          <h2 className="text-2xl font-semibold mb-4">Productos Destacados</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product) => (
-              <li
-                key={product.id}
-                className="border rounded-lg p-4 shadow-md flex flex-col items-center"
-              >
-                <ProductCard { ...product }/>
-              </li>
-            ))}
-          </ul>
-        </section> */}
-
         <section className="w-full max-w-[1110px] mx-auto">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(255px,1fr))] gap-7">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pl-4 md:grid md:grid-cols-[repeat(auto-fit,minmax(255px,1fr))] md:gap-7">
             {products.map((product) => (
-              <ProductCard {...product} key={product.id} />
+              <div key={product.id} className="snap-center min-w-[255px]">
+                <ProductCard {...product} />
+              </div>
             ))}
           </div>
         </section>    

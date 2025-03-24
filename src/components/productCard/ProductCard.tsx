@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const ProductCard = ({ image, title, price, rating }: Product) => {
   return (
-    <div className="w-full border border-solid border-gray-100 p-4">
+    <div className="w-full border border-solid border-gray-100 shadow-md p-4">
       <div className="relative w-full aspect-square mb-4">
         <Image 
           src={image} 
