@@ -2,11 +2,10 @@
 import TopBar from "../components/topbar/TopBar";
 import Header from "../components/header/Header";
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
-import AdvantageSection from "@/components/advantageSection/AdvantageSection";
+import AdvantageSection from "../components/advantageSection/AdvantageSection";
+import ProductCard from "../components/productCard/ProductCard";
 
-import Image from "next/image";
-
-type Product = {
+export type Product = {
   id: number;
   title: string;
   price: number;
@@ -45,22 +44,7 @@ export default async function Home() {
           <AdvantageSection />
         </section>
 
-        <section className="my-8 mx-auto w-[255px] border border-solid border-gray-200">
-          <div className="relative aspect-w-1 aspect-h-1 max-w-full">
-            <Image 
-              src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" 
-              alt="" 
-              className="object-contain w-full h-full" 
-              width={255}
-              height={255}
-              layout="intrinsic"
-            />
-          </div>
-          <p>Soy una mochila</p>
-          <p>$ 38.00</p>
-        </section>
-
-        <section className="w-full max-w-[1110px] mx-auto">
+        {/* <section className="w-full max-w-[1110px] mx-auto">
           <h2 className="text-2xl font-semibold mb-4">Productos Destacados</h2>
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
@@ -68,11 +52,19 @@ export default async function Home() {
                 key={product.id}
                 className="border rounded-lg p-4 shadow-md flex flex-col items-center"
               >
-                <h3 className="text-lg font-medium">{product.title}</h3>
+                <ProductCard { ...product }/>
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
+
+        <section className="w-full max-w-[1110px] mx-auto">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(255px,1fr))] gap-7">
+            {products.map((product) => (
+              <ProductCard {...product} key={product.id} />
+            ))}
+          </div>
+        </section>    
       </main>
     </div>
   );

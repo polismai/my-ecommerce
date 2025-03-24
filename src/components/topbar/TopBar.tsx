@@ -16,8 +16,8 @@ export const TopBar = () => {
   ];
 
   return (
-    <div className="flex bg-black w-full p-2 text-white justify-between text-xs">
-      <div className="flex gap-6">
+    <div className="flex bg-black w-full p-2 text-white justify-between text-xs overflow-hidden">
+      <div className="flex gap-6 min-w-0">
         {contactLinks.map(({ href, icon, text }, index) => (
           <Link 
             key={text} 
