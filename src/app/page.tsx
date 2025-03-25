@@ -45,9 +45,9 @@ export default async function Home() {
         </section>
 
         <section className="w-full max-w-[1110px] mx-auto">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pl-4 md:grid md:grid-cols-[repeat(auto-fit,minmax(255px,1fr))] md:gap-7">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pl-4 md:grid md:grid-cols-[repeat(auto-fit,minmax(255px,1fr))] md:gap-7 grid-flow-row items-stretch auto-rows-fr">
             {products.map((product) => (
-              <div key={product.id} className="snap-center min-w-[255px]">
+              <div key={product.id} className="snap-center min-w-[255px] border border-solid border-gray-200 shadow-md p-4 first:ml-4 md:first:ml-0">
                 <ProductCard {...product} />
               </div>
             ))}
