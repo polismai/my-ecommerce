@@ -3,7 +3,10 @@ import TopBar from "../components/topbar/TopBar";
 import Header from "../components/header/Header";
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
 import AdvantageSection from "../components/advantageSection/AdvantageSection";
-import ProductCard from "../components/productCard/ProductCard";
+
+//utilities
+import { GroupedProducts, groupProductsByCategory } from "@/utils/groupProductsByCategory";
+import HomeProductsGrid from "@/components/homeProductsGrid/HomeProductsGrid";
 
 export type Product = {
   id: number;
@@ -18,12 +21,18 @@ export type Product = {
   }
 }
 
+type Props = {
+  products: Product[];
+  productsGroupedByCategory: GroupedProducts;
+}
+
 export default async function Home() {
   const resProducts = await fetch("https://fakestoreapi.com/products");
   const products: Product[] = await resProducts.json();
 
   const resCategories = await fetch("https://fakestoreapi.com/products/categories");
   const categories: string[] = await resCategories.json();
+  const productsGroupedByCategory = groupProductsByCategory(products);
 
   return (
     <div className="min-h-screen flex flex-col p-4 sm:p-8">
@@ -45,13 +54,14 @@ export default async function Home() {
         </section>
 
         <section className="w-full max-w-[1110px] mx-auto">
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pl-4 md:grid md:grid-cols-[repeat(auto-fit,minmax(255px,1fr))] md:gap-7 grid-flow-row items-stretch auto-rows-fr">
-            {products.map((product) => (
-              <div key={product.id} className="snap-center min-w-[255px] border border-solid border-gray-200 shadow-md p-4 first:ml-4 md:first:ml-0">
-                <ProductCard {...product} />
+          {Object.entries(productsGroupedByCategory).map(([category, products]) => {
+            return (
+              <div key={category} className="mb-16">
+                <h2 className="text-sm md:text-lg font-bold uppercase mb-4 mt-0 mr-0 ml-4 md:mb-6 md:ml-0">{category}</h2>
+                <HomeProductsGrid products={products} />
               </div>
-            ))}
-          </div>
+            )
+          })}
         </section>    
       </main>
     </div>
