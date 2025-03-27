@@ -4,15 +4,14 @@ import Header from "../components/header/Header";
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
 import AdvantageSection from "../components/advantageSection/AdvantageSection";
 import HomeProductsGrid from "../components/homeProductsGrid/HomeProductsGrid";
-import CenteredLabel from "../components/centeredLabel/CenteredLabel";
+import PromoBanner from "../components/promoBanner/PromoBanner";
 
 //utilities
 import { groupProductsByCategory } from "@/utils/groupProductsByCategory";
 
 //images
-import bannerNewSeason from "/public/hero-banner.jpg";
 import bannerSale from "/public/banner-sale.jpg";
-import Image from "next/image";
+import bannerNewSeason from "/public/hero-banner.jpg";
 
 export type Product = {
   id: number;
@@ -72,27 +71,17 @@ export default async function Home() {
 
         <section className="w-full max-w-[1110px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative">
-              <Image src={bannerNewSeason} alt="" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <CenteredLabel>
-                  <p className="text-sm text-gray-500">New Season</p>
-                  <p className="text-lg font-bold">Lookbook collection</p>
-                </CenteredLabel>
-              </div>
-            </div>
-            <div className="relative">
-              <Image src={bannerSale} alt="" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <CenteredLabel>
-                  <p className="text-sm text-gray-500">Sale</p>
-                  <p className="text-lg font-bold">
-                    Get up to{' '}
-                    <span className="text-red-600">50% off</span>
-                  </p>
-                </CenteredLabel>
-              </div>
-            </div>
+            <PromoBanner image={bannerNewSeason}>
+              <p className="text-sm text-gray-500">New Season</p>
+              <p className="text-lg font-bold">Lookbook collection</p>
+            </PromoBanner> 
+            <PromoBanner image={bannerSale}>
+              <p className="text-sm text-gray-500">Sale</p>
+              <p className="text-lg font-bold">
+                Get up to{' '}
+                <span className="text-red-600">50% off</span>
+              </p>
+            </PromoBanner> 
           </div>
         </section>    
       </main>
