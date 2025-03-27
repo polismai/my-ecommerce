@@ -3,10 +3,16 @@ import TopBar from "../components/topbar/TopBar";
 import Header from "../components/header/Header";
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
 import AdvantageSection from "../components/advantageSection/AdvantageSection";
+import HomeProductsGrid from "../components/homeProductsGrid/HomeProductsGrid";
+import CenteredLabel from "../components/centeredLabel/CenteredLabel";
 
 //utilities
-import { GroupedProducts, groupProductsByCategory } from "@/utils/groupProductsByCategory";
-import HomeProductsGrid from "@/components/homeProductsGrid/HomeProductsGrid";
+import { groupProductsByCategory } from "@/utils/groupProductsByCategory";
+
+//images
+import bannerNewSeason from "/public/hero-banner.jpg";
+import bannerSale from "/public/banner-sale.jpg";
+import Image from "next/image";
 
 export type Product = {
   id: number;
@@ -21,10 +27,10 @@ export type Product = {
   }
 }
 
-type Props = {
-  products: Product[];
-  productsGroupedByCategory: GroupedProducts;
-}
+// type Props = {
+//   products: Product[];
+//   productsGroupedByCategory: GroupedProducts;
+// }
 
 export default async function Home() {
   const resProducts = await fetch("https://fakestoreapi.com/products");
@@ -62,6 +68,32 @@ export default async function Home() {
               </div>
             )
           })}
+        </section>
+
+        <section className="w-full max-w-[1110px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="relative">
+              <Image src={bannerNewSeason} alt="" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <CenteredLabel>
+                  <p className="text-sm text-gray-500">New Season</p>
+                  <p className="text-lg font-bold">Lookbook collection</p>
+                </CenteredLabel>
+              </div>
+            </div>
+            <div className="relative">
+              <Image src={bannerSale} alt="" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <CenteredLabel>
+                  <p className="text-sm text-gray-500">Sale</p>
+                  <p className="text-lg font-bold">
+                    Get up to{' '}
+                    <span className="text-red-600">50% off</span>
+                  </p>
+                </CenteredLabel>
+              </div>
+            </div>
+          </div>
         </section>    
       </main>
     </div>

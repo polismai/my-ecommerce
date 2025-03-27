@@ -40,7 +40,9 @@ export const HomeHeroCategories = ({ categories }: Props) => {
               className="object-cover" 
               fill={true} 
               alt={cat} />
-            <CenteredLabel>{cat}</CenteredLabel>
+            <div className="flex items-center justify-center h-full">
+              <CenteredLabel>{cat}</CenteredLabel>
+            </div>
           </div>
         );
       })}
