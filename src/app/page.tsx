@@ -50,15 +50,15 @@ export default async function Home() {
       </section>
 
       <main className="flex flex-col items-center sm:items-start gap-12 flex-grow">
-        <section className="w-full max-w-[1110px] mx-auto">
+        <section className="w-full max-w-[69.375rem] mx-auto">
           <HomeHeroCategories categories={categories} />
         </section>
           
-        <section className="w-full max-w-[1110px] mx-auto">
+        <section className="w-full max-w-[69.375rem] mx-auto">
           <AdvantageSection />
         </section>
 
-        <section className="w-full max-w-[1110px] mx-auto">
+        <section className="w-full max-w-[69.375rem] mx-auto">
           {Object.entries(productsGroupedByCategory).map(([category, products]) => {
             return (
               <div key={category} className="mb-16">
@@ -69,7 +69,7 @@ export default async function Home() {
           })}
         </section>
 
-        <section className="w-full max-w-[1110px] mx-auto">
+        <section className="w-full max-w-[69.375rem] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <PromoBanner image={bannerNewSeason}>
               <p className="text-sm text-gray-500">New Season</p>
@@ -83,8 +83,38 @@ export default async function Home() {
               </p>
             </PromoBanner> 
           </div>
-        </section>    
+        </section> 
+
+        <section className="w-full max-w-full">
+          <div className="bg-gradient-to-b from-[#F3F2F2] to-[#DCDBDB] my-8 p-6">
+            <article className="bg-white p-8 text-center max-w-[33rem] m-auto">
+              <div className="grid gap-8 max-w-[22rem] m-auto text-center">
+                <header>
+                  <h3 className="text-sm uppercase text-gray-400">Special Offer</h3>
+                  <h2 className="text-2xl uppercase flex flex-col">
+                    <span>Subscribe and</span>
+                    <span className="text-red-600">get 10% off</span>
+                  </h2>
+                </header>
+
+                <form action="" className="grid gap-6">
+                  <div className="grid">
+                    {/* <label>Email adress</label> */}
+                    <input 
+                      type="email"
+                      placeholder="Enter your email" 
+                      className="text-center border border-gray-300 bg-gray-100 h-16"
+                    />
+                  </div>
+                  <button className="bg-black size-full h-16 uppercase text-white">Subscribe</button>
+                </form>
+              </div>
+            </article>
+          </div>
+        </section>   
       </main>
     </div>
   );
 }
+
+            
