@@ -5,6 +5,7 @@ import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategor
 import AdvantageSection from "../components/advantageSection/AdvantageSection";
 import HomeProductsGrid from "../components/homeProductsGrid/HomeProductsGrid";
 import PromoBanner from "../components/promoBanner/PromoBanner";
+import Button from "../components/button/Button";
 
 //utilities
 import { groupProductsByCategory } from "@/utils/groupProductsByCategory";
@@ -12,6 +13,7 @@ import { groupProductsByCategory } from "@/utils/groupProductsByCategory";
 //images
 import bannerSale from "/public/banner-sale.jpg";
 import bannerNewSeason from "/public/hero-banner.jpg";
+
 
 export type Product = {
   id: number;
@@ -106,7 +108,7 @@ export default async function Home() {
                       className="text-center border border-gray-300 bg-gray-100 h-16"
                     />
                   </div>
-                  <button className="bg-black size-full h-16 uppercase text-white">Subscribe</button>
+                  <Button>Subscribe</Button>
                 </form>
               </div>
             </article>
