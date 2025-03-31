@@ -1,6 +1,4 @@
 //components
-import TopBar from "../components/topbar/TopBar";
-import Header from "../components/header/Header";
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
 import AdvantageSection from "../components/advantageSection/AdvantageSection";
 import HomeProductsGrid from "../components/homeProductsGrid/HomeProductsGrid";
@@ -45,15 +43,7 @@ export default async function Home() {
   const productsGroupedByCategory = groupProductsByCategory(products);
 
   return (
-    <div className="min-h-screen flex flex-col p-4 sm:p-8">
-      <header className="w-full">
-        <TopBar />
-      </header>
-
-      <section className="w-full max-w-8xl text-center sm:text-left mb-8">
-        <Header />
-      </section>
-
+    <div className="min-h-screen flex flex-col p-4">
       <main className="flex flex-col items-center sm:items-start gap-12 flex-grow">
         <section className="w-full max-w-[69.375rem] mx-auto">
           <HomeHeroCategories categories={categories} />

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { League_Spartan } from "next/font/google";
+import TopBar from "@/components/topbar/TopBar";
+import Header from "@/components/header/Header";
 
 const leagueSpartan = League_Spartan({
   subsets: ["latin"],
@@ -17,13 +19,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={leagueSpartan.className}>
-      <body>
-        {children}
+      <body className="min-h-screen flex flex-col">
+        <header className="w-full">
+          <TopBar />
+          <div className="w-full mx-auto text-center sm:text-left mb-8">
+            <Header />
+          </div>
+        </header>
+        <main className="flex-grow">{children}</main>
+        {/* <Footer /> */}
       </body>
     </html>
   );
