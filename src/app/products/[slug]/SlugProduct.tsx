@@ -35,7 +35,7 @@ export const ProductPage = async ({ params }: Props) => {
     <div>
      <PDPHeader product={product}/>
      <div className="mx-auto px-4 max-w-[1110px] mt-8">
-      <div className="grid grid-cols-[34.88rem_1fr] gap-6">
+      <div className="grid grid-cols-[1fr_34.25rem] gap-6">
         <div className="relative w-full aspect-square mb-4">
           <Image 
             src={product.image} 
@@ -63,7 +63,7 @@ export const ProductPage = async ({ params }: Props) => {
           <div className="my-8">
             <Divider />
           </div>
-          <div className="flex gap-7 text-sm mb-8">
+          <div className="flex justify-between text-sm mb-8">
             <Link href="#" className="flex gap-1 items-center">
               <Truck className="w-6 h-6" /> Shipping & Delivery
             </Link>
