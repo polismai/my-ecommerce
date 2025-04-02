@@ -1,4 +1,4 @@
-import { Product } from "@/app/page";
+import { Product as ProductModel } from "@/app/page";
 import Button from "@/components/button/Button";
 import Divider from "@/components/divider/Divider";
 import PDPHeader from "@/components/PDPHeader/PDPHeader";
@@ -10,6 +10,7 @@ import logo_visa from "/public/logo-visa.png";
 import logo_mastercard from "/public/logo-mastercard.png";
 import logo_paypal from "/public/loogo-paypal-PNG.png";
 import logo_discover from "/public/discover.png";
+import HomeProductsGrid from "@/components/homeProductsGrid/HomeProductsGrid";
 
 interface Props {
   params: {
@@ -22,20 +23,30 @@ function Price({ price }: { price: number }) {
     return <p className="font-bold text-xl">{currency}</p>;
   }
 
-
 export const ProductPage = async ({ params }: Props) => {
 
+  const res = await fetch("https://fakestoreapi.com/products");
+  const products: ProductModel[] = await res.json();
+  
   const parts = params.slug.split("-");
-  const productId = parts[parts.length - 1];
+  const productId = parseInt(parts[parts.length - 1]);
 
-  const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
-  const product: Product = await res.json();
+  // const res = await fetch(`https://fakestoreapi.com/products/${productId}`);
+  // const product: Product = await res.json();
+
+  const product: ProductModel | undefined = products.find((product: ProductModel) => {
+    return product.id === productId;
+  });
+
+  const relatedProducts = products.filter((item: ProductModel) => {
+    return item.category === product?.category && item.id !== product?.id;
+  });
 
   return (
     <div>
      <PDPHeader product={product}/>
      <div className="mx-auto px-4 max-w-[1110px] mt-8">
-      <div className="grid grid-cols-[1fr_34.25rem] gap-6">
+      <div className="grid grid-cols-[1fr_34.25rem] gap-6 mb-24">
         <div className="relative w-full aspect-square mb-4">
           <Image 
             src={product.image} 
@@ -91,6 +102,12 @@ export const ProductPage = async ({ params }: Props) => {
           <Divider />
         </div>
       </div>
+      <div>
+        <h3 className="uppercase font-bold text-gray-500 mb-8">
+          Related Products
+        </h3>
+        <HomeProductsGrid products={relatedProducts}/>
+      </div>
      </div>
     </div>
   );
@@ -100,11 +117,10 @@ export default ProductPage;
 
 export async function generateStaticParams() {
   const res = await fetch("https://fakestoreapi.com/products");
-  const products: Product[] = await res.json();
+  const products: ProductModel[] = await res.json();
 
   return products.map((product) => ({
     slug: `${slugify(product.title)}-${product.id}`,
   }));
 }
-
 
