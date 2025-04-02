@@ -1,7 +1,7 @@
 //components
 import HomeHeroCategories from "../components/homeHeroCategories/HomeHeroCategories";
 import AdvantageSection from "../components/advantageSection/AdvantageSection";
-import HomeProductsGrid from "../components/homeProductsGrid/HomeProductsGrid";
+import HomeProductsGrid from "../components/productsGrid/ProductsGrid";
 import PromoBanner from "../components/promoBanner/PromoBanner";
 import Button from "../components/button/Button";
 

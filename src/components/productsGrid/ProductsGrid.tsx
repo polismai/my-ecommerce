@@ -7,7 +7,7 @@ type Props= {
   products: Product[];
 }
 
-export const HomeProductsGrid = ({ products }: Props) => {
+export const ProductsGrid = ({ products }: Props) => {
   return (
     <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth scroll-pl-4 md:grid md:grid-cols-[repeat(auto-fit,minmax(255px,1fr))] md:gap-7 grid-flow-row items-stretch auto-rows-fr">
       {products.map((product) => {
@@ -24,4 +24,4 @@ export const HomeProductsGrid = ({ products }: Props) => {
   );
 };
 
-export default HomeProductsGrid;
+export default ProductsGrid;

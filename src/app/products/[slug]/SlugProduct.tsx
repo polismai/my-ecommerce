@@ -10,7 +10,7 @@ import logo_visa from "/public/logo-visa.png";
 import logo_mastercard from "/public/logo-mastercard.png";
 import logo_paypal from "/public/loogo-paypal-PNG.png";
 import logo_discover from "/public/discover.png";
-import HomeProductsGrid from "@/components/homeProductsGrid/HomeProductsGrid";
+import ProductsGrid from "@/components/productsGrid/ProductsGrid";
 
 interface Props {
   params: {
@@ -106,7 +106,7 @@ export const ProductPage = async ({ params }: Props) => {
         <h3 className="uppercase font-bold text-gray-500 mb-8">
           Related Products
         </h3>
-        <HomeProductsGrid products={relatedProducts}/>
+        <ProductsGrid products={relatedProducts}/>
       </div>
      </div>
     </div>
