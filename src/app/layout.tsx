@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col">
         <header className="w-full">
           <TopBar />
-          <div className="w-full mx-auto text-center sm:text-left mb-8">
+          <div className="w-full mx-auto text-center sm:text-left">
             <Header />
           </div>
         </header>

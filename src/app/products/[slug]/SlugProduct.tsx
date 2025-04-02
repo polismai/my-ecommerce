@@ -1,16 +1,27 @@
 import { Product } from "@/app/page";
 import Button from "@/components/button/Button";
-import RatingStars from "@/components/ratingStars/RatingStars";
+import Divider from "@/components/divider/Divider";
+import PDPHeader from "@/components/PDPHeader/PDPHeader";
 import { slugify } from "@/utils/slugify";
-import { Share2, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import { Heart, Scale, Truck, RefreshCcw, Mail } from "lucide-react";
 import Link from "next/link";
+import logo_visa from "/public/logo-visa.png";
+import logo_mastercard from "/public/logo-mastercard.png";
+import logo_paypal from "/public/loogo-paypal-PNG.png";
+import logo_discover from "/public/discover.png";
 
 interface Props {
   params: {
     slug: string;
   };
 }
+
+function Price({ price }: { price: number }) {
+  const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(price);
+    return <p className="font-bold text-xl">{currency}</p>;
+  }
+
 
 export const ProductPage = async ({ params }: Props) => {
 
@@ -22,51 +33,65 @@ export const ProductPage = async ({ params }: Props) => {
 
   return (
     <div>
-      <div className="bg-gray-100 p-4">
-        <div className="max-w-[1110px] mx-auto">
-            <div className="flex justify-between items-center">
-              <ul className="flex text-sm m-0 gap-2">
-                <li className="flex">
-                  <Link href="/">Home</Link>
-                  <ChevronRight className="ml-2 w-4 h-4" />
-                </li>
-                <li className="capitalize flex">
-                  <Link href={`/${product.category}`}>{product.category}</Link>
-                  <ChevronRight className="ml-2 w-4 h-4" />
-                </li>
-                <li>{product.title}</li>
-              </ul>
-              <button className="flex items-center gap-2 border border-gray-500 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
-                <Share2 className="w-5 h-5" />
-                Share
-              </button>
-            </div>
-          <h1 className="text-2xl font-bold my-6 text-center">{product.title}</h1>
-          <div className="flex justify-between items-center">
-            <div className="flex gap-2">
-              <RatingStars rating={product.rating.rate} />
-              <p className="text-sm">2 Reviews</p>
-            </div>
-            <div className="flex gap-4 text-sm">
-              <p>Sku: <b>{product.id}</b></p>
-              <p>Availability: <b>In Stock</b></p>
+     <PDPHeader product={product}/>
+     <div className="mx-auto px-4 max-w-[1110px] mt-8">
+      <div className="grid grid-cols-[34.88rem_1fr] gap-6">
+        <div className="relative w-full aspect-square mb-4">
+          <Image 
+            src={product.image} 
+            alt="" 
+            className="object-contain w-full h-full"
+            fill 
+          />
+        </div>
+        <div>
+          <h3 className="font-bold uppercase text-gray-500 mb-2">Description</h3>
+          <p>{product.description}</p>
+          <div className="my-8">
+            <Divider />
+          </div>
+          <div className="flex items-center gap-6">
+            <Price price={product.price} />
+            <Button>Add to Cart</Button>
+            <Link href="#">
+              <Heart className="w-6 h-6"/>
+            </Link>
+            <Link href="#">
+              <Scale className="w-6 h-6" />
+            </Link>
+          </div>
+          <div className="my-8">
+            <Divider />
+          </div>
+          <div className="flex gap-7 text-sm mb-8">
+            <Link href="#" className="flex gap-1 items-center">
+              <Truck className="w-6 h-6" /> Shipping & Delivery
+            </Link>
+            <Link href="#" className="flex gap-1 items-center">
+              <RefreshCcw className="w-6 h-6" /> Returns & Exchanges
+            </Link>
+            <Link href="#" className="flex gap-1 items-center">
+              <Mail className="w-6 h-6" /> Ask a question
+            </Link>
+          </div>
+          <div className="flex items-center gap-6">
+            <h3 className="uppercase font-bold text-gray-500 whitespace-nowrap">
+              Guaranteed Safe Checkout
+            </h3>
+            <div className="flex-1">
+              <Divider />
             </div>
           </div>
+          <div className="flex justify-between mt-6 mb-8">
+            <Image src={logo_visa} className="w-10 h-auto object-contain" alt="" />
+            <Image src={logo_mastercard} className="w-10 h-auto object-contain" alt="" />
+            <Image src={logo_paypal} className="w-12 h-auto object-contain" alt="" />
+            <Image src={logo_discover} className="w-12 h-auto object-contain" alt="" />
+          </div>
+          <Divider />
         </div>
       </div>
-       <p>{product.price}</p>
-       
-       <p>{product.category}</p>
-       <p>{product.description}</p>
-       <Button>Add to Cart</Button>
-       <div className="relative w-full aspect-square mb-4">
-        <Image 
-          src={product.image} 
-          alt="" 
-          className="object-contain w-full h-full"
-          fill 
-        />
-      </div>
+     </div>
     </div>
   );
 }

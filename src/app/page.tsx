@@ -44,7 +44,7 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen flex flex-col p-4">
-      <main className="flex flex-col items-center sm:items-start gap-12 flex-grow">
+      <main className="flex flex-col items-center sm:items-start gap-12 flex-grow mt-8">
         <section className="w-full max-w-[69.375rem] mx-auto">
           <HomeHeroCategories categories={categories} />
         </section>
