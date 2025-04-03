@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SocialIcons from "../socialIcons/SocialIcons";
 
 export const TopBar = () => {
   const contactLinks = [
@@ -8,15 +9,8 @@ export const TopBar = () => {
     { href: "#", icon: "/ico-small-clock.svg", text: "Soporte" },
   ];
 
-  const socialLinks = [
-    { href: "#", icon: "/ico-small-fb.svg", alt: "Facebook" },
-    { href: "#", icon: "/ico-small-tw.svg", alt: "Twitter" },
-    { href: "#", icon: "/ico-small-ig.svg", alt: "Instagram" },
-    { href: "#", icon: "/ico-small-pin.svg", alt: "Pinterest" },
-  ];
-
   return (
-    <div className="flex bg-black w-full p-2 text-white justify-between text-xs overflow-hidden">
+    <div className="flex bg-gray-400 w-full p-2 text-white justify-between text-xs overflow-hidden">
       <div className="flex gap-6 min-w-0">
         {contactLinks.map(({ href, icon, text }, index) => (
           <Link 
@@ -28,14 +22,7 @@ export const TopBar = () => {
           </Link>
         ))}
       </div>
-
-      <div className="flex gap-4">
-        {socialLinks.map(({ href, icon, alt }) => (
-          <Link key={alt} href={href} aria-label={alt}>
-            <Image src={icon} width={24} height={24} alt={alt} />
-          </Link>
-        ))}
-      </div>
+      <SocialIcons />
     </div>
   );
 };

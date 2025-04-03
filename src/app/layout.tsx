@@ -4,6 +4,7 @@ import "./globals.css";
 import { League_Spartan } from "next/font/google";
 import TopBar from "@/components/topbar/TopBar";
 import Header from "@/components/header/Header";
+import Footer from "@/components/footer/Footer";
 
 const leagueSpartan = League_Spartan({
   subsets: ["latin"],
@@ -30,7 +31,7 @@ export default function RootLayout({
           </div>
         </header>
         <main className="flex-grow">{children}</main>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );
