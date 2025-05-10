@@ -1,10 +1,10 @@
 import Link from "next/link";
-import Image from "next/image";
+import { ComponentType, SVGProps } from "react";
 
 type LinkInfo = {
   title: string;
   href: string;
-  icon?: string;
+  icon?: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
 export type SectionInfo = {
@@ -21,19 +21,18 @@ export const FooterLinkList = ({ data }: Props) => {
     <>
       <p className="uppercase mb-4">{data.title}</p>
       <ul className="flex flex-col gap-4 text-gray-500">
-        {data.links.map((link, i) => {
-          return (
-            <li key={i}>
-              <Link href={link.href} className="flex gap-1 items-center">
-                {link.icon && <Image src={link.icon} alt={link.title} width={24} height={24}/>}
-                {link.title}
-              </Link>
-            </li>
-          )
-        })}
+        {data.links.map((link, i) => (
+          <li key={i}>
+            <Link href={link.href} className="flex gap-2 items-center">
+              {link.icon && <link.icon className="text-black w-6 h-6" />}
+              {link.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </>
   );
 };
 
 export default FooterLinkList;
+

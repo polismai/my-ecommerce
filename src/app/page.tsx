@@ -11,9 +11,10 @@ import { groupProductsByCategory } from "@/utils/groupProductsByCategory";
 //images
 import Image from "next/image";
 import bannerSale from "/public/banner-sale.jpg";
-import bannerNewSeason from "/public/hero-banner.jpg";
-import womenStanding from "/public/woman-removebg-preview.png";
-import menWalking from "/public/men-removebg-preview.png";
+import bannerNewSeason from "/public/banner-new-season.jpg";
+import womenStanding from "/public/woman-standing.png";
+import menWalking from "/public/men-walking.png";
+import { Categories } from "@/models/Categories";
 
 
 export type Product = {
@@ -29,17 +30,12 @@ export type Product = {
   }
 }
 
-// type Props = {
-//   products: Product[];
-//   productsGroupedByCategory: GroupedProducts;
-// }
-
 export default async function Home() {
   const resProducts = await fetch("https://fakestoreapi.com/products");
   const products: Product[] = await resProducts.json();
 
   const resCategories = await fetch("https://fakestoreapi.com/products/categories");
-  const categories: string[] = await resCategories.json();
+  const categories: Categories[] = await resCategories.json();
   const productsGroupedByCategory = groupProductsByCategory(products);
 
   return (

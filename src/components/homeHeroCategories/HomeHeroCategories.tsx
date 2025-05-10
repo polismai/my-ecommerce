@@ -1,15 +1,17 @@
 //utilities
+import Link from "next/link";
 import { slugify } from "../../utils/slugify";
 
 //components
 import CenteredLabel from "../centeredLabel/CenteredLabel";
+import { Categories } from "@/models/Categories";
 
 //next
 import Image from "next/image";
 
 type Props = {
-  categories: string[]
-}
+  categories: Categories[];
+};
 
 export const HomeHeroCategories = ({ categories }: Props) => {
   return (
@@ -27,10 +29,11 @@ export const HomeHeroCategories = ({ categories }: Props) => {
         const imageUrl = `/pic-categories-${slug}.jpg`;
 
         return (
-          <div
+          <Link
+            href={`/category/${encodeURIComponent(cat)}`}
             key={index}
             className={`
-              relative w-full h-full 
+              relative w-full h-full block
               ${index === 0 ? "col-span-2 md:col-span-1 md:row-span-2" : ""}
               ${index === categories.length - 1 ? "col-span-2 md:col-span-2 md:col-start-2": ""}
             `}
@@ -43,7 +46,7 @@ export const HomeHeroCategories = ({ categories }: Props) => {
             <div className="flex items-center justify-center h-full">
               <CenteredLabel>{cat}</CenteredLabel>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

@@ -1,3 +1,8 @@
+import PhoneIcon from '@/icons/Phone';
+import LocationIcon from '@/icons/Location';
+import ClockIcon from '@/icons/Clock';
+import MailIcon from '@/icons/Mail';
+
 import Button from "../button/Button";
 import SocialIcons from "../socialIcons/SocialIcons";
 import FooterLinkList, { SectionInfo } from "../footerLinkList/FooterLinkList";
@@ -26,30 +31,29 @@ export const Footer = () => {
   const contactLinks: SectionInfo = {
     title: 'Contact Us',
     links: [
-      { title: 'Ukrain', href: '#', icon: '/ico-small-location.svg' },
-      { title: '+38 (050) 12 34 567', href: '#', icon: '/ico-small-phone.svg' },
-      { title: 'All week 24/7', href: '#', icon: '/ico-small-clock.svg' },
-      { title: 'mail@mail.com', href: '#', icon: '/ico-small-mail.svg' },
+      { title: 'Ukrain', href: '#', icon: LocationIcon },
+      { title: '+38 (050) 12 34 567', href: '#', icon: PhoneIcon },
+      { title: 'All week 24/7', href: '#', icon: ClockIcon },
+      { title: 'mail@mail.com', href: '#', icon: MailIcon },
     ],
   };
 
   return (
     <footer className="w-full">
       <div className="bg-black">
-        <div className="max-w-[1110px] items-center mx-auto py-4 justify-between grid grid-cols-[180px_520px_180px] bg-red-400">
+        <div className="max-w-[1110px] mx-auto items-center py-4 justify-between grid grid-cols-[180px_520px_180px]">
           <h2 className="text-white uppercase font-semibold text-sm">Be in touch with us:</h2>
           
-          <form className="flex gap-4 items-center overflow-hidden">
+          <div className="flex gap-4">
             <input 
-              type="email" 
               placeholder="Enter your email" 
-              className="border-0 w-full bg-gray-700 text-black outline-none"
+              className="border-0 rounded-none bg-gray-700"
             />
             <Button variant="outline" className="py-1">
               join us
             </Button>
-          </form>
-          <SocialIcons />
+          </div>
+          <SocialIcons className="justify-end"/>
         </div>
       </div>
 

@@ -28,7 +28,7 @@ export const Header = () => {
   const handleLinkClick = () => setMenuOpen(false);
 
   return (
-    <header className="w-full border-b-2 border-gray-400 bg-red-300 relative overflow-hidden">
+    <header className="w-full border-b-2 border-gray-400 relative overflow-hidden">
       <div className="flex items-center justify-between max-w-[1110px] w-full mx-auto p-4 overflow-hidden">
         <div className="gap-2 mx-4 flex">
           {/* Botón de menú para móviles y tablets */}

@@ -1,39 +1,47 @@
 import { ChevronRight, Share2 } from "lucide-react";
 import Link from "next/link";
 
-type BreadcrumbItem = {
-  href: string;
-  text: string;
+type Props = {
+  children?: React.ReactNode;
+  breadcrumb: {
+    href: string;
+    text: string;
+  }[];
 };
 
-type HeaderSecondaryProps = {
-  breadCrumb: BreadcrumbItem[];
-};
+export const HeaderSecondary = ({ children, breadcrumb }: Props) => {
+  const title = breadcrumb[breadcrumb.length - 1].text;
 
-export const HeaderSecondary = ({ breadCrumb }: HeaderSecondaryProps) => {
   return (
-    <div className="bg-gray-100 p-4">
-      <div className="max-w-[1110px] mx-auto">
-        <div className="flex justify-between items-center">
-          <ul className="flex text-sm m-0 gap-2">
-            {breadCrumb.map((item, index) => (
-              <li key={index} className="flex whitespace-nowrap">
-                <Link href={item.href}>{item.text}</Link>
-                {index < breadCrumb.length - 1 && (
-                  <ChevronRight className="ml-2 w-4 h-4" />
-                )}
-              </li>
-            ))}
-          </ul>
+    <div className="bg-gray-100 py-4 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="flex items-center justify-between">
+          <nav className="text-sm capitalize flex items-center gap-2 text-gray-600">
+            <Link href="/" className="hover:underline text-gray-800">
+              Home
+            </Link>
 
-          <button className="flex items-center gap-2 border border-gray-500 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
-            <Share2 className="w-5 h-5" />
-            Share
+            {breadcrumb.map(({ text, href }, index) => (
+              <span key={index} className="flex items-center gap-2">
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+                <Link href={href} className="hover:underline text-gray-800">
+                  {text}
+                </Link>
+              </span>
+            ))}
+          </nav>
+
+          <button className="flex items-center gap-2 text-gray-600 hover:text-gray-800">
+            <Share2 className="w-4 h-4" />
+            <span>Share</span>
           </button>
         </div>
-        <h1 className="text-2xl font-bold my-6 text-center">
-          {breadCrumb.length > 0 ? breadCrumb[breadCrumb.length - 1].text : ""}
+
+        <h1 className="text-center capitalize text-2xl font-semibold my-6 text-gray-900">
+          {title}
         </h1>
+
+        {children}
       </div>
     </div>
   );

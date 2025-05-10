@@ -11,9 +11,9 @@ const socialLinks = [
 
 type Props = React.ComponentProps<"div">;
 
-export const SocialIcons = (props: Props) => {  
+export const SocialIcons = ({ className = "", ...props }: Props) => {  
   return (
-    <div className="flex gap-4 items-center" {...props}>
+    <div className={`flex gap-4 items-center ${className}`} {...props}>
       {socialLinks.map(({ href, icon, alt }) => (
         <Link key={alt} href={href} aria-label={alt}>
           <Image src={icon} width={24} height={24} alt={alt} />
